@@ -1,5 +1,9 @@
 # Extend-Context-Menu-in-Google-Chrome
-A Google Chrome Extension to add context menu items
+A Google Chrome Extension to add context menu items. 
+
+This extension has been featured on [Deskera Blog](https://www.deskera.com/blog):
+
+* [Part 1: Proof-of-Concept](https://www.deskera.com/blog/writing-a-google-chrome-extension-part-1-proof-of-concept/)
 
 ## Installation
 
