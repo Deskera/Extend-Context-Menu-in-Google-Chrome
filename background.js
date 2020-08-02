@@ -1,14 +1,14 @@
 "use strict";
 
-let target;
-let targetUrl;
-let selectionMatchingPattern;
+var target;
+var targetUrl;
+var selectionMatchingPattern;
 const CONTEXT_MENU_ID = "CUSTOM_CONTEXT_MENU_" + Date.now();
 
 let defaultOptions = {
-    site: "Jira",
-    url: "https://jira.deskera.com/browse/",
-    pattern: "\\w+-\\d+"
+    site: "Wikipedia",
+    url: "https://en.wikipedia.org/wiki/",
+    pattern: "*"
 };
 
 chrome.runtime.onInstalled.addListener(function() {
@@ -18,6 +18,8 @@ chrome.runtime.onInstalled.addListener(function() {
       chrome.storage.sync.set(defaultOptions, function() {
         console.log("Default values have been set");
       });
+    } else {
+      loadOptions();
     }
   });
 });
@@ -74,5 +76,4 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     }
   }
 });
-loadOptions();
 chrome.contextMenus.onClicked.addListener(contextMenuHandler);
