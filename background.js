@@ -1,8 +1,22 @@
-const target = "Jira";
-const targetUrl = "https://jira.deskera.com/browse/";
-const selectionMatchingPattern = /\w+-\d+/g;
-
+var target;
+var targetUrl;
+var selectionMatchingPattern;
 const CONTEXT_MENU_ID = "CUSTOM_CONTEXT_MENU_" + Date.now();
+
+chrome.runtime.onInstalled.addListener(function() {
+  notSet = "Not set yet";
+  chrome.storage.sync.get({site: notSet}, function(data) {
+    chrome.storage.sync.set({site: "Jira", url: "https://jira.deskera.com/browse/", pattern: "\\w+-\\d+"}, function() {
+      console.log("Default values have been set");
+    });
+  });
+});
+
+chrome.storage.sync.get( null, function(items){
+  target = items["site"];
+  targetUrl = items["url"];
+  selectionMatchingPattern = new RegExp(items["pattern"], "g");
+});
 
 function contextMenuHandler(info,tab) {
   if (info.menuItemId !== CONTEXT_MENU_ID) {

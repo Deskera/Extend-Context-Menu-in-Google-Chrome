@@ -1,8 +1,8 @@
 {
   "name": "Extend Context Menu",
-  "version": "0.2",
+  "version": "0.2.1",
   "description": "A Chrome Extension to add context menu items",
-  "permissions": ["contextMenus"],
+  "permissions": ["contextMenus", "storage"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
