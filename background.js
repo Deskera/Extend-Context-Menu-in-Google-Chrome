@@ -1,16 +1,18 @@
-var target;
-var targetUrl;
-var selectionMatchingPattern;
+"use strict";
+
+let target;
+let targetUrl;
+let selectionMatchingPattern;
 const CONTEXT_MENU_ID = "CUSTOM_CONTEXT_MENU_" + Date.now();
 
-var defaultOptions = {
+let defaultOptions = {
     site: "Jira",
     url: "https://jira.deskera.com/browse/",
     pattern: "\\w+-\\d+"
 };
 
 chrome.runtime.onInstalled.addListener(function() {
-  notSet = "Not set yet";
+  let notSet = "Not set yet";
   chrome.storage.sync.get({site: notSet}, function(data) {
     if(data.site === notSet) {
       chrome.storage.sync.set(defaultOptions, function() {
@@ -24,7 +26,7 @@ function loadOptions(){
   chrome.storage.sync.get( null, function(items){
     target = items["site"];
     targetUrl = items["url"];
-    selectionMatchingPattern = new RegExp(items["pattern"], "g");
+    selectionMatchingPattern = new RegExp("^" + items["pattern"] + "$");
   });
   console.log("Options loaded");
 }
@@ -44,11 +46,11 @@ function contextMenuHandler(info,tab) {
 }
 console.log("CONTEXT_MENU_ID: " + CONTEXT_MENU_ID);
 
-var cmid;
+let cmid;
 chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
   if (msg.request === 'updateContextMenu') {
     if (msg.selection.match(selectionMatchingPattern)) {
-      var options = {
+      let options = {
         title: "Open \"%s\" in " + target,
         contexts: ['selection']
       };

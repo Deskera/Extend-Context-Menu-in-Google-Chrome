@@ -1,19 +1,30 @@
+"use strict";
+
 let site = document.getElementById('site');
 let url = document.getElementById('url');
 let pattern = document.getElementById('pattern');
+let status = document.getElementById('status');
 
 function saveOptions() {
-  chrome.storage.sync.set({
-    site: site.value,
-    url: url.value,
-    pattern: pattern.value
-  }, function() {
-    let status = document.getElementById('status');
-    status.textContent = 'Options saved.';
-    setTimeout(function() {
-      status.textContent = '';
-    }, 750);
-  });
+  if(site.value.match(/^\w+(?:\s*\w+)*$/) 
+  	&& url.value.match(/^(http|https):\/\/[^ "]+$/) 
+  	&& pattern.value.match(/^(?:\\w|\\d|-|\.|\*|\+|\w|A-Z|a-z|\[|]|\(|\))+$/)){
+    chrome.storage.sync.set({
+      site: site.value,
+      url: url.value,
+      pattern: pattern.value
+    }, function() {
+      status.textContent = 'Options saved.';
+      setTimeout(function() {
+        status.textContent = '';
+      }, 750);
+    });
+  } else {
+      status.textContent = 'Invalid options.';
+      setTimeout(function() {
+        status.textContent = '';
+      }, 1000);
+  }
 }
 
 function restoreOptions() {
