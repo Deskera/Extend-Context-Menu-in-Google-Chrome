@@ -26,7 +26,11 @@ function loadOptions(){
   chrome.storage.sync.get( null, function(items){
     target = items["site"];
     targetUrl = items["url"];
-    selectionMatchingPattern = new RegExp("^" + items["pattern"] + "$");
+    if(items["pattern"].match(/^\*+[*\w-\.]*$/)){
+      selectionMatchingPattern = new RegExp("^" + items["pattern"].replace(/\./g, "\\.").replace(/\*/g, ".+") + "$");
+    } else {
+      selectionMatchingPattern = new RegExp("^" + items["pattern"] + "$");
+    }
   });
   console.log("Options loaded");
 }
