@@ -5,17 +5,25 @@
     <style type="text/css">
       input { width: 60%; margin-left: 5%;}
       label { display: inline-block; width: 20%; text-align: right;}
+      span { margin-left: 25%; font-size: 0.9em; color: #aaa;}
     </style>
   </head>
   <body>
     <br />
     <label>Site Name</label>
-    <input type="text" id="site"><br /><br />
+    <input type="text" id="site"><br />
+    <span>(e.g. Wikipedia or English Wikipedia)</span>
+    <br /><br />
     <label>URL</label>
-    <input type="text" id="url"><br /><br />
+    <input type="text" id="url"><br />
+    <span>(e.g. http://en.wikipedia.org/wiki/</span>
+    <br /><br />
     <label>Pattern</label>
-    <input type="text" id="pattern"><br /><br />
-    <div id="status"></div><br />
+    <input type="text" id="pattern"><br />
+    <span>Regex pattern</span>
+    <br /><br />
+    <div id="status"></div>
+    <br />
     <button id="save">Save</button>
   </body>
   <script src="options.js"></script>
