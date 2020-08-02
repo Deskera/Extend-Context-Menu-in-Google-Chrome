@@ -12,10 +12,17 @@ chrome.runtime.onInstalled.addListener(function() {
   });
 });
 
-chrome.storage.sync.get( null, function(items){
-  target = items["site"];
-  targetUrl = items["url"];
-  selectionMatchingPattern = new RegExp(items["pattern"], "g");
+function loadOptions(){
+  chrome.storage.sync.get( null, function(items){
+    target = items["site"];
+    targetUrl = items["url"];
+    selectionMatchingPattern = new RegExp(items["pattern"], "g");
+  });
+  console.log("Options loaded");
+}
+
+chrome.storage.onChanged.addListener(function() {
+    loadOptions();
 });
 
 function contextMenuHandler(info,tab) {
@@ -52,4 +59,5 @@ chrome.runtime.onMessage.addListener(function(msg, sender, sendResponse) {
     }
   }
 });
+loadOptions();
 chrome.contextMenus.onClicked.addListener(contextMenuHandler);

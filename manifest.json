@@ -1,6 +1,6 @@
 {
   "name": "Extend Context Menu",
-  "version": "0.2.1",
+  "version": "0.3",
   "description": "A Chrome Extension to add context menu items",
   "permissions": ["contextMenus", "storage"],
   "background": {
@@ -16,6 +16,10 @@
     "32": "images/extcm32.png",
     "48": "images/extcm48.png",
     "128": "images/extcm128.png"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
   },
   "manifest_version": 2
 }
