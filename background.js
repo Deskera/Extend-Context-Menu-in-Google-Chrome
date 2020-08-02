@@ -43,9 +43,10 @@ function contextMenuHandler(info,tab) {
   if (info.menuItemId !== CONTEXT_MENU_ID) {
     return;
   }
-  console.log(info.selectionText + " was clicked.");
+  let searchStr = encodeURIComponent(info.selectionText);
+  console.log(searchStr + " was clicked.");
   chrome.tabs.create({  
-    url: targetUrl + info.selectionText
+    url: (targetUrl.includes("{0}") ? targetUrl.replace(/\{0\}/g, searchStr) : targetUrl + searchStr)
   });
 }
 console.log("CONTEXT_MENU_ID: " + CONTEXT_MENU_ID);
