@@ -3,12 +3,20 @@ var targetUrl;
 var selectionMatchingPattern;
 const CONTEXT_MENU_ID = "CUSTOM_CONTEXT_MENU_" + Date.now();
 
+var defaultOptions = {
+    site: "Jira",
+    url: "https://jira.deskera.com/browse/",
+    pattern: "\\w+-\\d+"
+};
+
 chrome.runtime.onInstalled.addListener(function() {
   notSet = "Not set yet";
   chrome.storage.sync.get({site: notSet}, function(data) {
-    chrome.storage.sync.set({site: "Jira", url: "https://jira.deskera.com/browse/", pattern: "\\w+-\\d+"}, function() {
-      console.log("Default values have been set");
-    });
+    if(data.site === notSet) {
+      chrome.storage.sync.set(defaultOptions, function() {
+        console.log("Default values have been set");
+      });
+    }
   });
 });
 
