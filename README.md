@@ -4,6 +4,8 @@ A Google Chrome Extension to add context menu items.
 This extension has been featured on [Deskera Blog](https://www.deskera.com/blog):
 
 * [Part 1: Proof-of-Concept](https://www.deskera.com/blog/writing-a-google-chrome-extension-part-1-proof-of-concept/)
+* [Part 2: Making it Configurable](https://www.deskera.com/blog/writing-a-google-chrome-extension-part-2-making-it-configurable/)
+* [Part 3: Securing the Extension](https://www.deskera.com/blog/writing-a-google-chrome-extension-part-3-securing-the-extension)
 
 ## Installation
 
@@ -15,7 +17,7 @@ This extension has been featured on [Deskera Blog](https://www.deskera.com/blog)
 
 ## License
 
-GNU General Public License v3.0
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) GNU General Public License v3.0
 
 ## Credits
 
